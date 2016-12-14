@@ -12,42 +12,24 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.scss';
 // import Link from '../Link';
+import MenuItem from '../MenuItem';
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
 
 class Navigation extends Component {
-  state = { visible: false }
+  state = { activeItem: 'home' }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { visible } = this.state;
+    const { activeItem } = this.state;
+
     return (
-       <div>
-         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-         <Sidebar.Pushable as={Segment}>
-           <Sidebar as={Menu} animation="push" width="thin" visible={visible} icon="labeled" vertical inverted>
-             <Menu.Item name="home">
-               <Icon name="home" />
-               Home
-             </Menu.Item>
-             <Menu.Item name="gamepad">
-               <Icon name="gamepad" />
-               Games
-             </Menu.Item>
-             <Menu.Item name="camera">
-               <Icon name="camera" />
-               Channels
-             </Menu.Item>
-           </Sidebar>
-           <Sidebar.Pusher>
-             <Segment basic>
-               <Header as="h3">Application Content</Header>
-               <Image src="http://semantic-ui.com/images/wireframe/paragraph.png" />
-             </Segment>
-           </Sidebar.Pusher>
-         </Sidebar.Pushable>
-       </div>
-     );
+      <Menu pointing secondary vertical>
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} to='/' />
+        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} to='/contact' />
+        <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+      </Menu>
+    )
   }
 }
 
