@@ -12,7 +12,7 @@ import Contact from './Contact';
 
 export const path = '/contact';
 export const action = async (state) => {
-  const title = 'Contact Us';
+  const title = 'Связаться с нами';
   state.context.onSetTitle(title);
   return <Contact title={title} />;
 };

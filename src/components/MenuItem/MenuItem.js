@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Location from '../../core/Location';
 import { Menu } from 'semantic-ui-react';
 
@@ -11,20 +11,9 @@ function isModifiedEvent(event) {
 }
 
 class MenuItem extends Menu.Item { // eslint-disable-line react/prefer-stateless-function
-  constructor() {
-    super();
-    //super.handleClick += this.handleClick2;
-    /*if (super.onClick) {
-      super.addEventListener('click', this.handleClick2);
-    }*/
-  }
 
-  handleClick = (event, props) => {
+  handleClick = (event) => {
     let allowTransition = true;
-
-    if (this.props.onClick) {
-      this.props.onClick(event, props);
-    }
 
     if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
       return;
@@ -46,13 +35,13 @@ class MenuItem extends Menu.Item { // eslint-disable-line react/prefer-stateless
         });
       }
     }
-  };
+
+    const { onClick } = this.props;
+    if (onClick) onClick(event, this.props);
+  }
 
   render() {
-    // console.log(super.render());
-    let res = super.render();
-    console.log(res);
-    return res;
+    return super.render();
   }
 }
 

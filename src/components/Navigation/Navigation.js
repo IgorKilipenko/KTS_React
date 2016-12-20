@@ -13,7 +13,9 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.scss';
 // import Link from '../Link';
 import MenuItem from '../MenuItem';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
+// import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
+// import MainMenu from '../MainMenu';
+import { Menu } from 'semantic-ui-react';
 
 class Navigation extends Component {
   state = { activeItem: 'home' }
@@ -25,9 +27,9 @@ class Navigation extends Component {
 
     return (
       <Menu pointing secondary vertical>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} to='/' />
-        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} to='/contact' />
-        <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+        <MenuItem name="home" active={activeItem === 'home'} onClick={this.handleItemClick} to="/" />
+        <MenuItem name="messages" active={activeItem === 'messages'} onClick={this.handleItemClick} to="/contact" />
+        <MenuItem name="friends" active={activeItem === 'friends'} onClick={this.handleItemClick} />
       </Menu>
     )
   }
